@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-right: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .nav-toggle {
+                display: block;
+                cursor: pointer;
+            }
+            .nav-toggle:hover {
+                background-color: #444;
+            }
+            .nav-links.active {
+                display: block;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                background-color: #333;
+                width: 100%;
+                padding: 1rem;
+            }
+            .nav-links.active li {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Responsive design for larger screens */
+        @media (min-width: 769px) {
+            .nav-links {
+                display: flex;
+            }
+            .nav-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <a href="#">Logo</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Add event listener to each nav link to close the menu when clicked
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
